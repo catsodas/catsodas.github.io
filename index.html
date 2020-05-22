@@ -9,7 +9,7 @@
 
         const music = new Audio("Tekilla Groove - Zalza (DiGERATi - Preeminence Allcrk.xm).mp3");
         music.loop = true;
-        
+
         let w;
         let h;
 
@@ -110,7 +110,11 @@
 
         requestAnimationFrame(init);
 
-        music.play();
+        // music.play();
+
+        document.body.addEventListener("mousemove", function () {
+            music.play()
+        })
 
         document.onkeydown = function (e) {
             switch (e.keyCode) {
