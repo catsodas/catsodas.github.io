@@ -81,6 +81,10 @@
             requestAnimationFrame(tick);
         };
 
+        let itt = 0;
+        let radius = 0;
+        let angle = 0;
+        let dd = 0;
 
         const tick = time => {
             let elapsed = time - prevTime;
@@ -95,11 +99,16 @@
 
             const count = stars.length;
 
+            angle += (Math.PI *2) /(500);
+
             for (var i = 0; i < count; i++) {
                 const star = stars[i];
 
                 let x = cx + star.x / (star.z * 0.001);
                 let y = cy + star.y / (star.z * 0.001);
+
+                x += (radius * Math.cos(angle))*(star.z - 1000);
+                y += (radius * Math.sin(angle))*(star.z - 1000);
 
                 if (x < 0 || x >= w || y < 0 || y >= h) {
                     continue;
@@ -131,8 +140,14 @@
 
         document.onkeydown = function (e) {
             switch (e.keyCode) {
+                case 37:
+                    radius += .01;
+                    break;
                 case 38:
                     starSpeed += 0.1;
+                    break;
+                case 39:
+                    radius -= .01;
                     break;
                 case 40:
                     starSpeed -= 0.1;
