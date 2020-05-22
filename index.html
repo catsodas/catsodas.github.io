@@ -15,8 +15,7 @@
         let w;
         let h;
 
-        let starSpeed = 0.1;
-        let spiral = 0;
+        let starSpeed = 0.3;
 
         const setCanvasExtents = () => {
             w = document.body.clientWidth;
@@ -44,7 +43,7 @@
             return out;
         };
 
-        let stars = makeStars(3000);
+        let stars = makeStars(1000);
 
         const clear = () => {
             c.fillStyle = "black";
@@ -68,9 +67,13 @@
                 const s = stars[i];
                 s.z -= distance;
                 while (s.z <= 1) {
+                    s.x = Math.random() * 1600 - 800;
+                    s.y = Math.random() * 900 - 450;
                     s.z += 1000;
                 }
                 if (s.z > 1000) {
+                    s.x = Math.random() * 1600 - 800;
+                    s.y = Math.random() * 900 - 450;
                     s.z = 1;
                 }
             }
