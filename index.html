@@ -16,6 +16,7 @@
         let h;
 
         let starSpeed = 0.1;
+        let spiral = 0;
 
         const setCanvasExtents = () => {
             w = document.body.clientWidth;
@@ -99,17 +100,27 @@
 
             const count = stars.length;
 
+            if(itt==(starSpeed/500)) {
+                itt = 0;
+                radius = 0;
+            } 
+
             angle += (Math.PI *2) /(500);
+            
+            itt++;
 
             for (var i = 0; i < count; i++) {
                 const star = stars[i];
 
-                let x = cx + star.x / (star.z * 0.001);
-                let y = cy + star.y / (star.z * 0.001);
+                let x = star.x / (star.z * 0.001);
+                let y = star.y / (star.z * 0.001);
 
                 x += (radius * Math.cos(angle))*(star.z - 1000);
                 y += (radius * Math.sin(angle))*(star.z - 1000);
 
+                x += cx;
+                y += cy;
+                
                 if (x < 0 || x >= w || y < 0 || y >= h) {
                     continue;
                 }
